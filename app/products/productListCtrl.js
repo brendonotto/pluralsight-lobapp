@@ -3,11 +3,12 @@
     angular
         .module("productManagement")
         .controller("ProductListCtrl", 
-                    ProductListCtrl);
+                    ["productResource",
+                     ProductListCtrl]);
 
-    function ProductListCtrl() {
+    function ProductListCtrl(productResource) {
         var vm = this;
-        vm.products = [
+        /* vm.products = [
             {"productId": 1,
             "productName": "Leaf Rake",
             "productCode": "GDN-001",
@@ -31,6 +32,11 @@
             "tags": [ "tool" ],
             "imageUrl": "https://openclipart.org/image/300px/svg_to_png/73/rejon-Hammer.png" 
             }];
+            */
+
+        productResource.query(function(data) {
+            vm.products = data;
+        });
 
         vm.showImage = false;
 
