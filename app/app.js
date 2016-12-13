@@ -4,14 +4,14 @@
                              ["common.services",
                               "ui.router",
                               "productResourceMock"]);
-    app.config(["$stateProvider, $urlRouterProvider", 
+    app.config(["$stateProvider", "$urlRouterProvider", 
         function($stateProvider, $urlRouterProvider) {
             $urlRouterProvider.otherwise("/");
 
             $stateProvider
                 .state("home", {
                     url: "/",
-                    templateUrl: "app/WelcomeView.html"
+                    templateUrl: "app/welcomeView.html"
                 })
                 //Products
                 .state("productList", {
@@ -23,6 +23,11 @@
                     url: "/products/edit/:productId",
                     templateUrl: "app/products/productEditView.html",
                     controller: "ProductEditCtrl as vm"
+                })
+                .state("productDetail", {
+                    url: "/products/:productId",
+                    templateUrl: "app/products/productDetailView.html",
+                    controller: "ProductDetailCtrl as vm"
                 })
     }]
     );
