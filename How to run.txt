@@ -1,0 +1,4 @@
+Instal node module http-server
+	npm install http-server -g
+Run from the root directory of the application
+	http-server
