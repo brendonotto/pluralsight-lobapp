@@ -3,7 +3,8 @@
     var app = angular.module("productManagement",
                              ["common.services",
                               "ui.router",
-                              "productResourceMock"]);
+                              "productResourceMock",
+                              "ui.mask"]);
     app.config(["$stateProvider", "$urlRouterProvider", 
         function($stateProvider, $urlRouterProvider) {
             $urlRouterProvider.otherwise("/");
