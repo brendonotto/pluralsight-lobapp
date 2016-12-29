@@ -14,6 +14,8 @@
         <script src="node_modules/angular-ui-mask/dist/mask.js"></script>
         <script src="js/ui-bootstrap-tpls-0.11.0.js"></script>
         <script src="js/toastr.js"></script>
+        <script src="js/angular-charts.min.js"></script>
+        <script src="js/d3.min.js"></script>
 
         <!-- Application specific -->
         <script src="app/app.js"></script>
@@ -24,6 +26,7 @@
         <script src="common/services/productResource.js"></script>
         <script src="common/services/productResourceMock.js"></script>
         <script src="common/services/productService.js"></script>
+        <script src="app/prices/priceAnalyticsCtrl.js"></script>
 
         <!-- CSS -->
         <link href="css/bootstrap.min.css" rel="stylesheet" />
@@ -52,6 +55,7 @@
                         <li><a ui-sref="productList">Product List</a></li>
                         <li><a ui-sref="productEdit.info({productId:0})">
                             <i class="glyphicon glyphicon-plus"></i>Add Product</a></li>
+                        <li><a ui-sref="priceAnalytics">Price Analytics</a></li>
                     </ul>
                 </div>
             </div>
