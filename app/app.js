@@ -3,10 +3,23 @@
     var app = angular.module("productManagement",
                              ["common.services",
                               "ui.router",
-                              "productResourceMock",
                               "ui.mask",
                               "angularCharts",
-                              "ui.bootstrap"]);
+                              "ui.bootstrap",
+                              "productResourceMock"]);
+
+    app.config(function ($provide) {
+        $provide.decorator("$exceptionHandler",
+            ["$delegate",
+                function ($delegate){
+                    return function (exception, cause) {
+                        exception.message = "Please contact the help desk! \n Message: " + exception.message;
+                        $delegate(exception, cause);
+                        alert(exception.message);
+                    };
+                }]);
+    });
+
     app.config(["$stateProvider", "$urlRouterProvider", 
         function($stateProvider, $urlRouterProvider) {
             $urlRouterProvider.otherwise("/");
@@ -67,7 +80,17 @@
                         productResource: "productResource",
 
                         products: function (productResource) {
-                            return productResource.query().$promise;
+                            return productResource.query(function(response) {
+
+                            },
+                            function(response) {
+                                if (response.status == 404) {
+                                    alert("Error accessing resource: " +
+                                        response.config.method + " " + response.config.url);
+                                } else {
+                                    alert(response.statusText);
+                                }
+                            }).$promise;
                         }
                     }
                 })
